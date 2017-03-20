@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectType>local</ProjectType>
+    <ProjectVersion>7.10.377</ProjectVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{98AD05B5-BE29-4610-938B-575B89DFBF85}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <AssemblyName>AerMonitor</AssemblyName>
+    <OutputType>WinExe</OutputType>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Compile Include="AermecNamespace\Authorization.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AermecNamespace\Authorization.Designer.cs">
+      <DependentUpon>Authorization.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AermecNamespace\ModbusInsideTCP.cs" />
+    <Compile Include="AermecNamespace\SupervisorCOM.cs" />
+    <Compile Include="AermecNamespace\SupervisorTcpIP.cs" />
+    <Compile Include="AermecNamespace\TcpIP.cs" />
+    <Compile Include="AermecNamespace\TcpIPConfig.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AermecNamespace\AddThreshold.resx">
+      <DependentUpon>AddThreshold.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AermecNamespace\AlertForm.resx">
+      <DependentUpon>AlertForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AermecNamespace\AlertThreshold.resx">
+      <DependentUpon>AlertThreshold.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AermecNamespace\Authorization.resx">
+      <DependentUpon>Authorization.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Reference Include="EasyModbus">
+      <HintPath>..\..\AerMonitorVisualStudioProj\ModbusTCP\EasyModbus.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Compile Include="AermecNamespace\AddThreshold.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AermecNamespace\AddThreshold.Designer.cs">
+      <DependentUpon>AddThreshold.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AermecNamespace\AlertForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AermecNamespace\AlertForm.Designer.cs">
+      <DependentUpon>AlertForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AermecNamespace\AlertThreshold.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AermecNamespace\AlertThreshold.Designer.cs">
+      <DependentUpon>AlertThreshold.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Global.cs" />
+    <Compile Include="AermecNamespace\FormBmsSelection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AermecNamespace\FormDataView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AermecNamespace\FormDevicesSelection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AermecNamespace\FormChart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AermecNamespace\ChartConfigCollection.cs" />
+    <Compile Include="AermecNamespace\FormProject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AermecNamespace\FormDeviceCommands.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AermecNamespace\FormLogger.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AermecNamespace\FormChartConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AermecNamespace\Properties\Resources.cs" />
+    <Compile Include="AermecNamespace\DataLogConfig.cs" />
+    <Compile Include="AermecNamespace\Info.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AermecNamespace\ModbusMaster.cs" />
+    <Compile Include="AermecNamespace\DataStorage.cs" />
+    <Compile Include="AermecNamespace\Properties\Settings.cs" />
+    <Compile Include="AermecNamespace\FormMDIMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AermecNamespace\Config.cs" />
+    <Compile Include="AermecNamespace\SerializzaOggettiXML.cs" />
+    <Compile Include="AermecNamespace\SerialConfig.cs" />
+    <Compile Include="AermecNamespace\Program.cs" />
+    <Compile Include="AermecNamespace\FormDataLogMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AermecNamespace\DataLogManage.cs" />
+    <Compile Include="AermecNamespace\SerialCom.cs" />
+    <Compile Include="AermecNamespace\BmsProject.cs" />
+    <Compile Include="AermecNamespace\Device.cs" />
+    <Compile Include="AermecNamespace\FormTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AermecNamespace\Supervisor.cs" />
+    <Compile Include="AermecNamespace\FormDevicesDataB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AermecNamespace\FilesManage.cs" />
+    <EmbeddedResource Include="AermecNamespace.FormMDIMain.resources" />
+    <EmbeddedResource Include="AermecNamespace.FormTest.resources" />
+    <EmbeddedResource Include="AermecNamespace.FormChart.resources" />
+    <EmbeddedResource Include="AermecNamespace.FormDeviceCommands.resources" />
+    <EmbeddedResource Include="AermecNamespace.FormDataView.resources" />
+    <EmbeddedResource Include="AermecNamespace.FormDataLogMain.resources" />
+    <EmbeddedResource Include="AermecNamespace.Properties.Resources.resources" />
+    <EmbeddedResource Include="AermecNamespace.Info.resources" />
+    <EmbeddedResource Include="AermecNamespace.FormDevicesSelection.resources" />
+    <EmbeddedResource Include="AermecNamespace.FormProject.resources" />
+    <EmbeddedResource Include="AermecNamespace.FormLogger.resources" />
+    <EmbeddedResource Include="AermecNamespace.FormBmsSelection.resources" />
+    <EmbeddedResource Include="AermecNamespace.FormChartConfig.resources" />
+    <EmbeddedResource Include="AermecNamespace.FormDevicesDataB.resources" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\newToolStripButton.Image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\openToolStripButton.Image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\saveToolStripButton.Image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\Folder-new-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\Open-icon8508.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\save-icon-9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%24this.Icon.ico" />
+  </ItemGroup>
+</Project>
