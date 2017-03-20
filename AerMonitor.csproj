@@ -64,7 +64,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <Reference Include="EasyModbus">
-      <HintPath>..\..\AerMonitorVisualStudioProj\ModbusTCP\EasyModbus.dll</HintPath>
+      <HintPath>ModbusTCP\EasyModbus.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System" />

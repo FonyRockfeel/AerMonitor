@@ -3,8 +3,7 @@
     using System;
     using System.Collections;
     using System.IO.Ports;
-    using System.Threading;
-    using EasyModbus;
+    using System.Threading;   
     using System.Windows.Forms;       
     using System.Net.Sockets;
     
