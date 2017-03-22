@@ -11,7 +11,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Runtime;
-    class ModbusInsideTCP
+    public class ModbusInsideTCP
     {
         private byte[] bufferRx;
 
@@ -28,17 +28,15 @@
         private Thread waitReply;
 
         public ModbusInsideTCP(string newHostName, int newPort)
-        {
-            var tcpAdapter = new TcpClientAdapter(new TcpClient(newHostName, newPort));
-            //TODO setting timeouts
-            _transport = new ModbusIpTransport(tcpAdapter);
+        {            
             hostName = newHostName;
             port = newPort;
         }
 
         public void Connect()
         {
-            // this.tcpClient.Connect(hostName, port);
+            var tcpAdapter = new TcpClientAdapter(new TcpClient(hostName, port));           
+            _transport = new ModbusIpTransport(tcpAdapter);
         }
 
         public void Disconnect()
@@ -255,7 +253,7 @@
         {
             byte[] header = GetMbapHeader(message);
             byte[] pdu = message.ProtocolDataUnit;
-            var messageBody = new MemoryStream(header.Length + pdu.Length);
+            MemoryStream messageBody = new MemoryStream(header.Length + pdu.Length);
 
             messageBody.Write(header, 0, header.Length);
             messageBody.Write(pdu, 0, pdu.Length);
