@@ -41,7 +41,7 @@
 
         public void Disconnect()
         {
-            // this.tcpClient.Close();
+            _transport = null;
         }
 
         public byte[] QueryAndWaitResponse(byte[] command)
@@ -54,51 +54,7 @@
             {
                 return new byte[8];//in exception case method returns array of 8 bytes
             }
-        }
-
-        //public byte[] WaitRx()
-        //{
-        //    int index = 0;
-        //    int num2 = 0;
-        //    byte[] buffer = null;
-        //    try
-        //    {
-        //        //this.timeOf4Byte = (int)((((1.0 / ((double)this.comPort.BaudRate)) * 11.0) * 1000.0) * 4.0);
-                
-        //        // this.comPort.ReadTimeout = this.ResponseTimeout;
-        //        this.tcpClient.ReceiveTimeout = this.ResponseTimeout;
-
-        //        num2 = this.ResponseTimeout / 10;
-        //        for (index = 0; index < num2; index++)
-        //        { 
-
-        //        }
-        //    }
-        //    catch (Exception)
-        //    {
-        //    }
-        //    try
-        //    {
-        //        index = 0;
-        //        while (index < this.bufferRx.Length)
-        //        {
-        //            //this.bufferRx[index] = (byte)this.comPort.ReadByte();
-        //            index++;
-        //        }
-        //    }
-        //    catch (Exception)
-        //    {
-        //    }
-        //    if (index > 0)
-        //    {
-        //        buffer = new byte[index];
-        //        for (index = 0; index < buffer.Length; index++)
-        //        {
-        //            buffer[index] = this.bufferRx[index];
-        //        }
-        //    }
-        //    return buffer;
-        //}
+        }        
     }
 
     internal class TcpClientAdapter
@@ -109,7 +65,7 @@
         {
             Debug.Assert(tcpClient != null, "Argument tcpClient cannot be null.");
 
-            _tcpClient = tcpClient;
+            _tcpClient = tcpClient;            
         }
 
         public int InfiniteTimeout
