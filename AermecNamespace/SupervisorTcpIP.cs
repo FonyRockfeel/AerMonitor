@@ -114,7 +114,8 @@
                                     /** /Test **/
 
                                     code = master.Answer(buffer, ModbusMaster.ModBusCommand.READ_HOLDING_REGISTERS, command.Size);
-                                    if (code != ModbusMaster.AnswerCode.OK)
+                                    //проглатываем ошибки crc
+                                    if (code != ModbusMaster.AnswerCode.OK & code != ModbusMaster.AnswerCode.CRCError)
                                     {
                                         MessageBox.Show(code.ToString());
 
@@ -151,9 +152,11 @@
                                     }
                                     MessageBox.Show("начало" + command2.StartAddres.ToString() + "\n" + "размер" + command2.Size.ToString() + "\nbuffer = " + array);
                                     /** /Test **/
-
+                                    
                                     code = master.Answer(buffer, ModbusMaster.ModBusCommand.READ_INPUT_REGISTERS, command2.Size);
-                                    if (code != ModbusMaster.AnswerCode.OK)
+
+                                    //проглатываем ошибки crc
+                                    if (code != ModbusMaster.AnswerCode.OK & code != ModbusMaster.AnswerCode.CRCError)
                                     {
                                         command2.TotalErrors++;
                                         if (this.DeviceReadRegisterError != null)
@@ -196,7 +199,8 @@
                                 /** /Test **/
 
                                 code = master.Answer(buffer, ModbusMaster.ModBusCommand.READ_COILS, command3.Size);
-                                if (code != ModbusMaster.AnswerCode.OK)
+                                //проглатываем ошибки crc
+                                if (code != ModbusMaster.AnswerCode.OK & code != ModbusMaster.AnswerCode.CRCError)
                                 {
                                     command3.TotalErrors++;
                                     if (this.DeviceReadCoilsError != null)
@@ -384,7 +388,7 @@
             }
         }
 
-        public void StopModbusMasterPool()
+        public override void StopModbusMasterPool()
         {
             this.loopCommunication = false;
         }
