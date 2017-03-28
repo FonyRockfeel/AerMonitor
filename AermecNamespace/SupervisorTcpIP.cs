@@ -378,7 +378,7 @@
         {
             if (!this.IsRunning())
             {
-                // this.modbusTCPClient.Connect();
+                this.modbusInsideTCPClient.Connect();
                 this.comLoop = new Thread(new ThreadStart(this.CommunicationControlBrain));
                 this.loopCommunication = true;
                 this.exitedLoop = false;

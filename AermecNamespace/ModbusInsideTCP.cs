@@ -41,7 +41,7 @@
 
         public void Disconnect()
         {
-            // this.tcpClient.Close();
+            _transport.Dispose();
         }
 
         public byte[] QueryAndWaitResponse(byte[] command)
@@ -154,7 +154,8 @@
         {
             if (disposing)
             {
-                
+                _tcpClient.GetStream().Close();
+                _tcpClient.Close();
             }
         }
     }
@@ -172,6 +173,10 @@
         {
             _adapter = adapter;
             Debug.Assert(_adapter != null, "Argument streamResource cannot be null.");
+        }
+        public void Dispose()
+        {
+            _adapter.Dispose();
         }
 
         internal static byte[] ReadRequestResponse(TcpClientAdapter adapter)

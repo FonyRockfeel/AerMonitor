@@ -51,8 +51,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(241, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Превышены следующие параметры системы:";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.label1.Text = "Превышены следующие параметры системы:";           
             // 
             // label2
             // 
