@@ -48,8 +48,7 @@
         public override Supervisor Clone()
         {
             SupervisorTcpIP supervisor = new SupervisorTcpIP
-            {
-                // modbusTCPClient = this.modbusTCPClient,
+            {                
                 modbusInsideTCPClient = this.modbusInsideTCPClient,
                 DataDeviceUpdate = this.DataDeviceUpdate,
                 DeviceReadCoilsError = this.DeviceReadCoilsError,
@@ -230,8 +229,7 @@
                     this.DataAllDevicesUpdate(this, args5);
                 }
             }
-            // this.rs485.ClosePort();
-            // this.modbusTCPClient.Disconnect();
+            this.modbusInsideTCPClient.Disconnect();            
             this.exitedLoop = true;
             if (this.LogStopped != null)
             {
