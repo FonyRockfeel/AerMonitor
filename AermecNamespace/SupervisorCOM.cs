@@ -9,15 +9,15 @@
     {        
         private SerialCom rs485;
 
-        public event EventHandler DataAllDevicesUpdate;
+        //public event EventHandler DataAllDevicesUpdate;
 
-        public event EventHandler<DeviceEventArgs> DataDeviceUpdate;
+        //public event EventHandler<DeviceEventArgs> DataDeviceUpdate;
 
-        public event EventHandler<DeviceErrorEventArgs> DeviceReadCoilsError;
+        //public event EventHandler<DeviceErrorEventArgs> DeviceReadCoilsError;
 
-        public event EventHandler<DeviceErrorEventArgs> DeviceReadRegisterError;
+        //public event EventHandler<DeviceErrorEventArgs> DeviceReadRegisterError;
 
-        public event EventHandler LogStopped;
+        //public event EventHandler LogStopped;
 
         public SupervisorCOM()
         {
@@ -39,11 +39,7 @@
         {
             SupervisorCOM supervisor = new SupervisorCOM
             {
-                rs485 = this.rs485,
-                DataDeviceUpdate = this.DataDeviceUpdate,
-                DeviceReadCoilsError = this.DeviceReadCoilsError,
-                DeviceReadRegisterError = this.DeviceReadRegisterError,
-                LogStopped = this.LogStopped,
+                rs485 = this.rs485,                
                 deviceDB = this.deviceDB.Clone(),
                 ModbusMasterArrayList = new ArrayList(0)
             };
@@ -102,12 +98,8 @@
                                     code = master.Answer(buffer, ModbusMaster.ModBusCommand.READ_HOLDING_REGISTERS, command.Size);
                                     if (code != ModbusMaster.AnswerCode.OK)
                                     {
-                                        command.TotalErrors++;
-                                        if (this.DeviceReadRegisterError != null)
-                                        {
-                                            DeviceErrorEventArgs e = new DeviceErrorEventArgs(device.DeviceName, device.ModBusID, commandIndex, code);
-                                            this.DeviceReadRegisterError(this, e);
-                                        }
+                                        command.TotalErrors++;                                        
+                                        Raise_DeviceReadRegisterError(this, new DeviceErrorEventArgs(device.DeviceName, device.ModBusID, commandIndex, code));
                                     }
                                     if (!this.loopCommunication)
                                     {
@@ -127,12 +119,8 @@
                                     code = master.Answer(buffer, ModbusMaster.ModBusCommand.READ_INPUT_REGISTERS, command2.Size);
                                     if (code != ModbusMaster.AnswerCode.OK)
                                     {
-                                        command2.TotalErrors++;
-                                        if (this.DeviceReadRegisterError != null)
-                                        {
-                                            DeviceErrorEventArgs args2 = new DeviceErrorEventArgs(device.DeviceName, device.ModBusID, commandIndex, code);
-                                            this.DeviceReadRegisterError(this, args2);
-                                        }
+                                        command2.TotalErrors++;                                        
+                                        Raise_DeviceReadRegisterError(this, new DeviceErrorEventArgs(device.DeviceName, device.ModBusID, commandIndex, code));
                                     }
                                     if (!this.loopCommunication)
                                     {
@@ -158,12 +146,8 @@
                                 code = master.Answer(buffer, ModbusMaster.ModBusCommand.READ_COILS, command3.Size);
                                 if (code != ModbusMaster.AnswerCode.OK)
                                 {
-                                    command3.TotalErrors++;
-                                    if (this.DeviceReadCoilsError != null)
-                                    {
-                                        DeviceErrorEventArgs args3 = new DeviceErrorEventArgs(device.DeviceName, device.ModBusID, commandIndex, code);
-                                        this.DeviceReadCoilsError(this, args3);
-                                    }
+                                    command3.TotalErrors++;                                    
+                                    Raise_DeviceReadCoilsError(this, new DeviceErrorEventArgs(device.DeviceName, device.ModBusID, commandIndex, code));
                                 }
                                 if (!this.loopCommunication)
                                 {
@@ -175,26 +159,15 @@
                         if (!this.loopCommunication)
                         {
                             break;
-                        }
-                        if (this.DataDeviceUpdate != null)
-                        {
-                            DeviceEventArgs args4 = new DeviceEventArgs(device.ModBusID);
-                            this.DataDeviceUpdate(this, args4);
-                        }
+                        }                       
+                        Raise_DataDeviceUpdate(this, new DeviceEventArgs(device.ModBusID));
                     }
-                }
-                if (this.loopCommunication && (this.DataAllDevicesUpdate != null))
-                {
-                    EventArgs args5 = new EventArgs();
-                    this.DataAllDevicesUpdate(this, args5);
-                }
+                }                
+                Raise_DataAllDevicesUpdate(this);
             }
             this.rs485.ClosePort();
-            this.exitedLoop = true;
-            if (this.LogStopped != null)
-            {
-                this.LogStopped(this, new EventArgs());
-            }
+            this.exitedLoop = true;            
+            Raise_LogStopped(this);
         }
 
         public decimal GetCoilFromModbusId(int id, int address, bool gain)

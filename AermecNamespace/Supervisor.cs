@@ -24,31 +24,31 @@
         public event EventHandler LogStopped;
 
         #region Events Invocators
-        protected void Raise_DataAllDevicesUpdate()
+        protected void Raise_DataAllDevicesUpdate(object sender)
         {
             EventHandler handler = DataAllDevicesUpdate;
-            if (handler != null) handler(this, null);
+            if (handler != null) handler(sender, null);
 
         }
-        protected void Raise_DataDeviceUpdate(DeviceEventArgs args)
+        protected void Raise_DataDeviceUpdate(object sender,DeviceEventArgs args)
         {
             EventHandler<DeviceEventArgs> handler = DataDeviceUpdate;
-            if (handler != null) handler(this, args);
+            if (handler != null) handler(sender, args);
         }
-        protected void Raise_DeviceReadCoilsError(DeviceErrorEventArgs args)
+        protected void Raise_DeviceReadCoilsError(object sender,DeviceErrorEventArgs args)
         {
             EventHandler<DeviceErrorEventArgs> handler = DeviceReadCoilsError;
-            if (handler != null) handler(this, args);
+            if (handler != null) handler(sender, args);
         }
-        protected void Raise_DeviceReadRegisterError(DeviceErrorEventArgs args)
+        protected void Raise_DeviceReadRegisterError(object sender,DeviceErrorEventArgs args)
         {
             EventHandler<DeviceErrorEventArgs> handler = DeviceReadRegisterError;
-            if (handler != null) handler(this, args);
+            if (handler != null) handler(sender, args);
         }
-        protected void Raise_LogStopped()
+        protected void Raise_LogStopped(object sender)
         {
             EventHandler handler = LogStopped;
-            if (handler != null) handler(this, null);
+            if (handler != null) handler(sender, null);
         }
 
         #endregion
