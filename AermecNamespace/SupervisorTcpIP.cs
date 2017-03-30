@@ -19,6 +19,7 @@
         private byte[] bufferRx;
         public int ResponseTimeout = 0x3e8;
 
+
         public event EventHandler DataAllDevicesUpdate;
 
         public event EventHandler<DeviceEventArgs> DataDeviceUpdate;
@@ -99,22 +100,20 @@
                                 {
                                     this.ResponseTimeout = device.ScanRate;
                                     command.TotalCommandSent++;
-
-                                    //buffer = this.rs485.QueryAndWaitResponse(master.ReadHoldingRegisters(command.StartAddres, command.Size));
-
+                                    
                                     buffer = this.modbusInsideTCPClient.QueryAndWaitResponse(master.ReadHoldingRegisters(command.StartAddres, command.Size));
 
                                     /** Test **/
-                                    String array = "";
-                                    for (int ir = 0; ir < command.Size; ir++)
-                                    {
-                                        array = array + buffer[ir].ToString() + " ";
-                                    }
-                                    MessageBox.Show("начало" + command.StartAddres.ToString() + "\n" + "размер" + command.Size.ToString() + "\nbuffer = " + array);
+                                    //String array = "";
+                                    //for (int ir = 0; ir < command.Size; ir++)
+                                    //{
+                                    //    array = array + buffer[ir].ToString() + " ";
+                                    //}
+                                    //MessageBox.Show("начало" + command.StartAddres.ToString() + "\n" + "размер" + command.Size.ToString() + "\nbuffer = " + array);
                                     /** /Test **/
 
                                     code = master.Answer(buffer, ModbusMaster.ModBusCommand.READ_HOLDING_REGISTERS, command.Size);
-                                    //проглатываем ошибки crc
+                                    
                                     if (code != ModbusMaster.AnswerCode.OK)
                                     {
                                         MessageBox.Show(code.ToString());
@@ -138,24 +137,23 @@
                                 Device.ReadInputRegistersCommand command2 = (Device.ReadInputRegistersCommand)device.ReadRegistersCommandArray[commandIndex];
                                 if (command2.EnableCommnand)
                                 {
-                                    //this.rs485.ResponseTimeout = device.ScanRate;
-
+                                    this.ResponseTimeout = device.ScanRate;
                                     command2.TotalCommandSent++;
                                                                     
                                     buffer = this.modbusInsideTCPClient.QueryAndWaitResponse(master.ReadHoldingRegisters(command2.StartAddres, command2.Size));
 
                                     /** Test **/
-                                    String array = "";
-                                    for (int ir = 0; ir < command2.Size; ir++)
-                                    {
-                                        array = array + buffer[ir].ToString() + " ";
-                                    }
-                                    MessageBox.Show("начало" + command2.StartAddres.ToString() + "\n" + "размер" + command2.Size.ToString() + "\nbuffer = " + array);
+                                    //String array = "";
+                                    //for (int ir = 0; ir < command2.Size; ir++)
+                                    //{
+                                    //    array = array + buffer[ir].ToString() + " ";
+                                    //}
+                                    //MessageBox.Show("начало" + command2.StartAddres.ToString() + "\n" + "размер" + command2.Size.ToString() + "\nbuffer = " + array);
                                     /** /Test **/
                                     
                                     code = master.Answer(buffer, ModbusMaster.ModBusCommand.READ_INPUT_REGISTERS, command2.Size);
 
-                                    //проглатываем ошибки crc
+                                    
                                     if (code != ModbusMaster.AnswerCode.OK)
                                     {
                                         command2.TotalErrors++;
@@ -183,23 +181,22 @@
                             Device.ReadCoilsCommand command3 = (Device.ReadCoilsCommand)device.ReadCoilsCommandArray[commandIndex];
                             if (command3.EnableCommnand)
                             {
-                                //this.rs485.ResponseTimeout = device.ScanRate;
-
+                                this.ResponseTimeout = device.ScanRate;
                                 command3.TotalCommandSent++;
                                 
                                 buffer = this.modbusInsideTCPClient.QueryAndWaitResponse(master.ReadHoldingRegisters(command3.StartAddres, command3.Size));
 
                                 /** Test **/
-                                String array = "";
-                                for (int ir = 0; ir < command3.Size; ir++)
-                                {
-                                    array = array + buffer[ir].ToString() + " ";
-                                }
-                                MessageBox.Show("начало" + command3.StartAddres.ToString() + "\n" + "размер" + command3.Size.ToString() + "\nbuffer = " + array);
+                                //String array = "";
+                                //for (int ir = 0; ir < command3.Size; ir++)
+                                //{
+                                //    array = array + buffer[ir].ToString() + " ";
+                                //}
+                                //MessageBox.Show("начало" + command3.StartAddres.ToString() + "\n" + "размер" + command3.Size.ToString() + "\nbuffer = " + array);
                                 /** /Test **/
 
                                 code = master.Answer(buffer, ModbusMaster.ModBusCommand.READ_COILS, command3.Size);
-                                //проглатываем ошибки crc
+                                
                                 if (code != ModbusMaster.AnswerCode.OK)
                                 {
                                     command3.TotalErrors++;

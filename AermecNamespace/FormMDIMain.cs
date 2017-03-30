@@ -171,6 +171,7 @@
 
         private void DataReceivedFromDevices(Supervisor.DeviceEventArgs e)
         {
+            
             foreach (Form form in base.MdiChildren)
             {
                 try

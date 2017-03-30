@@ -23,6 +23,37 @@
 
         public event EventHandler LogStopped;
 
+        #region Events Invocators
+        protected void Raise_DataAllDevicesUpdate()
+        {
+            EventHandler handler = DataAllDevicesUpdate;
+            if (handler != null) handler(this, null);
+
+        }
+        protected void Raise_DataDeviceUpdate(DeviceEventArgs args)
+        {
+            EventHandler<DeviceEventArgs> handler = DataDeviceUpdate;
+            if (handler != null) handler(this, args);
+        }
+        protected void Raise_DeviceReadCoilsError(DeviceErrorEventArgs args)
+        {
+            EventHandler<DeviceErrorEventArgs> handler = DeviceReadCoilsError;
+            if (handler != null) handler(this, args);
+        }
+        protected void Raise_DeviceReadRegisterError(DeviceErrorEventArgs args)
+        {
+            EventHandler<DeviceErrorEventArgs> handler = DeviceReadRegisterError;
+            if (handler != null) handler(this, args);
+        }
+        protected void Raise_LogStopped()
+        {
+            EventHandler handler = LogStopped;
+            if (handler != null) handler(this, null);
+        }
+
+        #endregion
+
+
         public Supervisor()
         {
             this.exitedLoop = true;
