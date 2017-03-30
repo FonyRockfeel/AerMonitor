@@ -312,7 +312,7 @@
             }
             while (!success);
             //adding crc bytes
-            tmpStream.Flush();
+            tmpStream = new MemoryStream();
             tmpStream.Write(_responseMessage.ProtocolDataUnit, 0, _responseMessage.ProtocolDataUnit.Length);
             var crc = CalculateCrc(_responseMessage.ProtocolDataUnit);
             tmpStream.Write(crc, 0, crc.Length);

@@ -115,7 +115,7 @@
 
                                     code = master.Answer(buffer, ModbusMaster.ModBusCommand.READ_HOLDING_REGISTERS, command.Size);
                                     //проглатываем ошибки crc
-                                    if (code != ModbusMaster.AnswerCode.OK & code != ModbusMaster.AnswerCode.CRCError)
+                                    if (code != ModbusMaster.AnswerCode.OK)
                                     {
                                         MessageBox.Show(code.ToString());
 
@@ -156,7 +156,7 @@
                                     code = master.Answer(buffer, ModbusMaster.ModBusCommand.READ_INPUT_REGISTERS, command2.Size);
 
                                     //проглатываем ошибки crc
-                                    if (code != ModbusMaster.AnswerCode.OK & code != ModbusMaster.AnswerCode.CRCError)
+                                    if (code != ModbusMaster.AnswerCode.OK)
                                     {
                                         command2.TotalErrors++;
                                         if (this.DeviceReadRegisterError != null)
@@ -200,7 +200,7 @@
 
                                 code = master.Answer(buffer, ModbusMaster.ModBusCommand.READ_COILS, command3.Size);
                                 //проглатываем ошибки crc
-                                if (code != ModbusMaster.AnswerCode.OK & code != ModbusMaster.AnswerCode.CRCError)
+                                if (code != ModbusMaster.AnswerCode.OK)
                                 {
                                     command3.TotalErrors++;
                                     if (this.DeviceReadCoilsError != null)
