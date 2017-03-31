@@ -52,7 +52,7 @@
             }
             catch
             {
-                return new byte[8];//in exception case method returns array of 8 bytes
+                return new byte[1];//in exception case method returns array of 1 byte
             }
         }        
     }
@@ -307,6 +307,7 @@
                     else
                     {
                         Debug.WriteLine("Unexpected exception!");
+                        throw;
                     }
                 }
             }

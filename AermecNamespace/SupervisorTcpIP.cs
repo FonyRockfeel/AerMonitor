@@ -111,9 +111,7 @@
                                     code = master.Answer(buffer, ModbusMaster.ModBusCommand.READ_HOLDING_REGISTERS, command.Size);
                                     
                                     if (code != ModbusMaster.AnswerCode.OK)
-                                    {
-                                        MessageBox.Show(code.ToString());
-
+                                    {                                       
                                         command.TotalErrors++;                                        
                                         Raise_DeviceReadRegisterError(this,new DeviceErrorEventArgs(device.DeviceName, device.ModBusID, commandIndex, code));
                                     }
@@ -172,7 +170,7 @@
                                 this.ResponseTimeout = device.ScanRate;
                                 command3.TotalCommandSent++;
                                 
-                                buffer = this.modbusInsideTCPClient.QueryAndWaitResponse(master.ReadHoldingRegisters(command3.StartAddres, command3.Size));
+                                buffer = this.modbusInsideTCPClient.QueryAndWaitResponse(master.ReadCoils(command3.StartAddres, command3.Size));
 
                                 /** Test **/
                                 //String array = "";
