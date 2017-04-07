@@ -108,8 +108,9 @@
 
         protected virtual void Dispose(bool disposing)
         {
-            if (disposing)
+            if (disposing&_tcpClient.Connected)
             {
+
                 _tcpClient.GetStream().Close();
                 _tcpClient.Close();
             }
