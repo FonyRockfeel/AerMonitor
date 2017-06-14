@@ -99,7 +99,7 @@
         public FormMDIMain()
         {
             this.InitializeComponent();
-            this.optionsToolStripMenuItem.Visible = this.debug;
+            this.optionsToolStripMenuItem.Visible = true;//this.debug;
             // Новый код            
             coefficient = 1.18;            
             // -----------
